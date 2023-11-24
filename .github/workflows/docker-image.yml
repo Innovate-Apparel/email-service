@@ -15,4 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag email-service
+    - name: Run the Docker image
+      run: docker run -p 8080:3000 email-service
+    - name: Send POST to http://localhost:8080/send-verification-code
+      id: testCodeSend
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'http://localhost:8080/api/send-verification-code'
+        method: 'POST'
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: '{"recipients": "infrastructure@innovateapparel.com", "code": "000001"}'
+    - name: Show Response
+      run: |
+        echo ${{ steps.testCodeSend.outputs.response }}
