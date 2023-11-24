@@ -76,11 +76,18 @@ docker run --env-file .env -p 8080:3000 email-service
 
 ### Using the Service
 
-Send a `POST` request to `http://localhost:3005/email/send-verification-code` with a `JSON` body e.g.,:
+Send a `POST` request to `http://localhost:8080/email/send-verification-code` with a `JSON` body e.g.,:
 ```json
 {
     "recipient": "no-reply@innovateapparel.com",
     "code": "000001"
+}
+```
+
+Expected Response:
+```json
+{
+    "message": "Email sent successfully"
 }
 ```
 
