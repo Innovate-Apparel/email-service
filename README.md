@@ -45,8 +45,23 @@ We will implement new device sign-in alerts, notifications, etc., soon
 SMTP_HOST=mail.privateemail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USERNAME=your-email@privateemail.com
-SMTP_PASSWORD=your-password
+SMTP_USERNAME=no-reply@innovateapparel.com
+SMTP_PASSWORD=""
+
+DEFAULT_FROM=no-reply@innovateapparel.com
+DEFAULT_TO=no-reply@innovateapparel.com
+DEFAULT_SUBJECT=AutomatedMessage
+DEFAULT_TEXT=AutomatedEmail
+DEFAULT_HTML=<h1>AutomatedEmail</h1>
+LOGO_FILENAME=logo.png
+LOGO_TYPE=images
+LOGO_CID=logo
+CODE_TEMPLATE=code.html
+TEXT_TEMPLATE=YourCodeIs{{code}};
+
+PORT=3000
+LOGFILE_PATH=/var/log/email-service.log
+
 ```
 
 3. Build the Docker image
