@@ -12,10 +12,34 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Write Enviornment File
+        uses: javajawa/create-envfile@v1
+        with:
+          envkey_SMTP_HOST: ${{ vars.SMTP_HOST }}
+          envkey_SMTP_PORT: ${{ vars.SMTP_PORT }}
+          envkey_SMTP_SECURE: ${{ vars.SMTP_SECURE }}
+          envkey_SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          envkey_SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          envkey_DEFAULT_FROM: ${{ vars.NOREPLY_EMAIL }}
+          envkey_DEFAULT_TO: ${{ vars.NOREPLY_EMAIL }}
+          envkey_DEFAULT_SUBJECT: Automated Message
+          envkey_DEFAULT_TEXT: Hello,\nThis is an automated email. This is likely a test.\n\nBest Regards,\nInnovate Apparel.
+          envkey_DEFAULT_HTML: <html><h1>Hello,</h1><p><br>This is an automated email. This is likely a test.<br><br>Best Regards,<br>Innovate Apparel.</p></html
+          envkey_LOGO_FILENAME: innovate-apparel-logo.png
+          envkey_LOGO_TYPE: images
+          envkey_LOGO_CID: logo
+          envkey_CODE_TEMPLATE: verification-code.html
+          envkey_TEXT_TEMPLATE: "Hello {{user}},\n\nYour verification code is: {{code}}\n\nBest Regards,\nInnovate Apparel"
+          envkey_PORT: 3000
+          envkey_LOGFILE_PATH: ${{ vars.LOGFILE_PATH }}
+
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag email-service
+
       - name: Run the Docker image
-        run: docker run -p 8080:3000 email-service
+        run: docker run -p 8080:3000 email-service &
+        
       - name: Send POST to http://localhost:8080/send-verification-code
         id: testCodeSend
         uses: fjogeleit/http-request-action@v1
@@ -24,6 +48,7 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"recipients": "infrastructure@innovateapparel.com", "code": "000001"}'
+          
       - name: Show Response
         run: |
           echo ${{ steps.testCodeSend.outputs.response }}
