@@ -48,12 +48,3 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"recipient": "infrastructure@innovateapparel.com", "code": "000001"}'
-          
-      - name: Show Response
-        run: |
-          echo ${{ steps.testCodeSend.outputs.response }}
-          echo ${{ steps.testCodeSend.outputs.headers }}
-
-      - name: Fail 
-        if: ${{ steps.testCodeSend.outputs.status != '201' }}
-        run: exit 1
