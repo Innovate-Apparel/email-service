@@ -29,7 +29,7 @@ jobs:
           envkey_LOGO_FILENAME: innovate-apparel-logo.png
           envkey_LOGO_TYPE: images
           envkey_LOGO_CID: logo
-          envkey_CODE_TEMPLATE: verification-code.html
+          envkey_CODE_TEMPLATE: ${{ vars.VERIFICATION_CODE_TEMPLATE }}
           envkey_TEXT_TEMPLATE: "Hello {{user}},\n\nYour verification code is: {{code}}\n\nBest Regards,\nInnovate Apparel"
           envkey_PORT: 3000
           envkey_LOGFILE_PATH: ${{ vars.LOGFILE_PATH }}
@@ -38,7 +38,7 @@ jobs:
         run: docker build . --file Dockerfile --tag email-service
 
       - name: Run the Docker image
-        run: docker run -p 8080:3000 email-service &
+        run: docker run --env-file .env -p 8080:3000 email-service &
         
       - name: Send POST to http://localhost:8080/send-verification-code
         id: testCodeSend
