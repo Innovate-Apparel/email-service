@@ -48,3 +48,6 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"recipient": "infrastructure@innovateapparel.com", "code": "000001"}'
+          
+      - name: Print Output
+        run: echo ${{ steps.testCodeSend.outputs.response }}
