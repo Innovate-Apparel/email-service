@@ -44,7 +44,7 @@ jobs:
         id: testCodeSend
         uses: fjogeleit/http-request-action@v1
         with:
-          url: 'http://localhost:8080/api/send-verification-code'
+          url: 'http://localhost:8080/email/send-verification-code'
           method: 'POST'
           customHeaders: '{"Content-Type": "application/json"}'
           data: '{"recipients": "infrastructure@innovateapparel.com", "code": "000001"}'
