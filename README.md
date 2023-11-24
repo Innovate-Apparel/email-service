@@ -38,15 +38,15 @@ We will implement new device sign-in alerts, notifications, etc., soon
 
 1. **Clone the repository** (Note: Access restricted to authorized personnel only).
    ```bash
-   git clone [your-repository-link]
-   cd [repository-name]
+   git clone git@github.com:Innovate-Apparel/email-service.git
+   cd email-service
 
 2. Create a `.env` file in the project root with SMTP server details:
 ```bash
 SMTP_HOST=mail.privateemail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USERNAME=no-reply@innovateapparel.com
+SMTP_USERNAME=""
 SMTP_PASSWORD=""
 
 DEFAULT_FROM=no-reply@innovateapparel.com
