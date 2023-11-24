@@ -52,6 +52,7 @@ jobs:
       - name: Show Response
         run: |
           echo ${{ steps.testCodeSend.outputs.response }}
+          echo ${{ steps.testCodeSend.outputs.headers }}
 
       - name: Fail 
         if: ${{ steps.testCodeSend.outputs.status != '201' }}
