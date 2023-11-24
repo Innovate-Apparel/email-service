@@ -22,7 +22,7 @@ const sendVerificationCode = async (req, res, next) => {
     if (!code) throw new BadRequestError('Verification Code Required!');
 
     const result = await sendVerificationCodeEmail(recipient, code);
-    return res.json(result);
+    return res.status(201).json(result);
   } catch (err) {
     return next(err);
   }
