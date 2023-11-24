@@ -1,6 +1,7 @@
 # Innovate Apparel
 
 ## Containerized Email Service
+[![Docker Image CI](https://github.com/Innovate-Apparel/email-service/actions/workflows/docker-image.yml/badge.svg)](https://github.com/Innovate-Apparel/email-service/actions/workflows/docker-image.yml)
 
 Written and Maintained by Founder, Leshawn Rice 
 
