@@ -30,7 +30,7 @@ jobs:
           envkey_LOGO_TYPE: images
           envkey_LOGO_CID: logo
           envkey_CODE_TEMPLATE: ${{ vars.VERIFICATION_CODE_TEMPLATE }}
-          envkey_TEXT_TEMPLATE: "Hello {{user}},\n\nYour verification code is: {{code}}\n\nBest Regards,\nInnovate Apparel"
+          envkey_TEXT_TEMPLATE: "Hello {{user}},\\n\\nYour verification code is: {{code}}\\n\\nBest Regards,\\nInnovate Apparel"
           envkey_PORT: 3000
           envkey_LOGFILE_PATH: ${{ vars.LOGFILE_PATH }}
 
