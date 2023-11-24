@@ -64,10 +64,11 @@ const craftVerificationCodeEmailOptions = (recipients, code) => {
 
   // Replace placeholders in the templates
   let text = TEXT_TEMPLATE;
+  // Instead of looping we just use regex to replace all instances of "{{user}}" and "{{code}}"
   const html = template
-    .replaceAll('{{user}}', user)
-    .replaceAll('{{code}}', code);
-  text = text.replaceAll('{{user}}', user).replaceAll('{{code}}', code);
+    .replace(/\{\{user\}\}/g, user)
+    .replace(/\{\{code\}\}/g, code);
+  text = text.replace(/\{\{user\}\}/g, user).replace(/\{\{code\}\}/g, code);
 
   options = {
     ...options,
